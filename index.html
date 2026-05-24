@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFI Tech Blog - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <div class="logo-icon">TB</div>
+                    <span class="logo-text">Tech Blog</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active">
+                <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Technology" class="slide-image">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Welcome to Tech Blog</h1>
+                    <p>Your source for the latest insights in technology, programming, and innovation</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Programming" class="slide-image">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Explore Modern Development</h1>
+                    <p>Discover cutting-edge techniques and best practices</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Innovation" class="slide-image">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Innovate with AI</h1>
+                    <p>In a world driven by innovation, staying curious is the ultimate superpower</p>
+                </div>
+            </div>
+            <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+            <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentSlideIndex = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+
+            if (index >= slides.length) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = slides.length - 1;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function moveSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= document.querySelectorAll('.slide').length) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = document.querySelectorAll('.slide').length - 1;
+            showSlide(currentSlideIndex);
+            resetInterval();
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+            resetInterval();
+        }
+
+        function autoSlide() {
+            currentSlideIndex++;
+            if (currentSlideIndex >= document.querySelectorAll('.slide').length) {
+                currentSlideIndex = 0;
+            }
+            showSlide(currentSlideIndex);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(autoSlide, 5000);
+        }
+
+        slideInterval = setInterval(autoSlide, 5000);
+    </script>
+
+    <section class="featured-posts">
+        <div class="container">
+            <h2>Featured Articles</h2>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-card-inner">
+                        <h3>Getting Started with Web Development</h3>
+                        <p class="post-meta">January 15, 2026</p>
+                        <p class="post-preview">Learn the fundamentals of web development, including HTML, CSS, and JavaScript. This comprehensive guide will walk you through building your first website from scratch.</p>
+                        <a href="article1.html" class="read-more">Read more</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-card-inner">
+                        <h3>The Future of Artificial Intelligence</h3>
+                        <p class="post-meta">March 8, 2026</p>
+                        <p class="post-preview">Explore how AI is transforming industries and shaping our future. From machine learning to neural networks, discover what's next in artificial intelligence.</p>
+                        <a href="article2.html" class="read-more">Read more</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-card-inner">
+                        <h3>Best Practices for Clean Code</h3>
+                        <p class="post-meta">April 20, 2026</p>
+                        <p class="post-preview">Writing maintainable and readable code is essential for any developer. Learn the principles and techniques that will make your code cleaner and more professional.</p>
+                        <a href="article3.html" class="read-more">Read more</a>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-card-inner">
+                        <h3>Ethics in Technology</h3>
+                        <p class="post-meta">May 23, 2026</p>
+                        <p class="post-preview">As technology becomes increasingly integrated into every aspect of our lives, the question of ethics has moved from philosophy classrooms to boardrooms and development labs.</p>
+                        <a href="article-ethics.html" class="read-more">Read more</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Tech Blog | Designed by Your Name</p>
+        </div>
+    </footer>
+</body>
+</html>
